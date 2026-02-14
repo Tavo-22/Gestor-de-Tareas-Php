@@ -37,6 +37,32 @@ try {
             $aut = new AuthController();
             echo json_encode($aut->verificarSesion());
             break;
+
+        // USUARIOS
+        case 'usuario_listar':
+            $usu = new UsuarioController();
+            echo json_encode($usu->listar());
+            break;
+        case 'usuario_obtener':
+            $usu = new UsuarioController();
+            echo json_encode($usu->obtenerPorId($_GET));
+            break;  
+        case 'usuario_perfil':
+            $usu = new UsuarioController();
+            echo json_encode($usu->perfil());
+            break;
+        case 'usuario_actualizar':
+            $usu = new UsuarioController();
+            echo json_encode($usu->actualizarPerfil($_POST));
+            break;  
+        case 'usuario_cambiar_password':
+            $usu = new UsuarioController();
+            echo json_encode($usu->cambiarPassword($_POST));
+            break;
+        case 'usuario_eliminar':
+            $usu = new UsuarioController();
+            echo json_encode($usu->eliminarCuenta());
+            break;            
     }
 } catch (Exception $e) {
     echo json_encode([
