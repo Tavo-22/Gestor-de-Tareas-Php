@@ -380,6 +380,18 @@ class Tarea
         return $categoria;
     }
 
+    public function listarPorCategoria($categoria_id)
+    {
+        $sql = "
+        SELECT * FROM tareas 
+        WHERE categoria_id = ? AND usuario_id = ?
+        ORDER BY fecha_creacion DESC
+    ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$categoria_id, $this->usuario_id]);
+        return $stmt->fetchAll();
+    }
+
     //obtener usuario devuelve el objeto usuario asociado a la tarea
     public function obtenerUsuario()
     {
@@ -433,7 +445,7 @@ class Tarea
     }
 
     //eliminar etiqueta, quitar asociacion
-    public function eliminarEtiqueta($etiqueta_id)
+    public function quitarEtiqueta($etiqueta_id)
     {
         if (empty($this->id)) {
             return [
@@ -464,8 +476,9 @@ class Tarea
     }
 
     //obtener todas las etiqeutas de esta tarea
-    public function obtenerEtiquetas() {
-        if(empty($this->id)) {
+    public function obtenerEtiquetas()
+    {
+        if (empty($this->id)) {
             return [];
         }
         $sql = "SELECT e.* FROM etiquetas e

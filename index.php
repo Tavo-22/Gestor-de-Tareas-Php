@@ -46,7 +46,7 @@ try {
         case 'usuario_obtener':
             $usu = new UsuarioController();
             echo json_encode($usu->obtenerPorId($_GET));
-            break;  
+            break;
         case 'usuario_perfil':
             $usu = new UsuarioController();
             echo json_encode($usu->perfil());
@@ -54,7 +54,7 @@ try {
         case 'usuario_actualizar':
             $usu = new UsuarioController();
             echo json_encode($usu->actualizarPerfil($_POST));
-            break;  
+            break;
         case 'usuario_cambiar_password':
             $usu = new UsuarioController();
             echo json_encode($usu->cambiarPassword($_POST));
@@ -62,7 +62,85 @@ try {
         case 'usuario_eliminar':
             $usu = new UsuarioController();
             echo json_encode($usu->eliminarCuenta());
-            break;            
+            break;
+
+        // CATEGORIAS
+        case 'categoria_listar':
+            $cat = new CategoriaController();
+            echo json_encode($cat->listar());
+            break;
+
+        case 'categoria_crear':
+            $cat = new CategoriaController();
+            echo json_encode($cat->crear($_POST));
+            break;
+
+        case 'categoria_obtener':
+            $cat = new CategoriaController();
+            echo json_encode($cat->obtener($_GET));
+            break;
+
+        case 'categoria_actualizar':
+            $cat = new CategoriaController();
+            echo json_encode($cat->actualizar($_POST));
+            break;
+
+        case 'categoria_eliminar':
+            $cat = new CategoriaController();
+            echo json_encode($cat->eliminar($_POST));
+            break;
+
+        case 'categoria_estadisticas':
+            $cat = new CategoriaController();
+            echo json_encode($cat->estadisticas());
+            break;
+
+            //Tareas
+        case 'tarea_listar':
+            $tar = new TareaController();
+            echo json_encode($tar->listar($_GET));
+            break;
+            
+         case 'tarea_crear':
+            $tar = new TareaController();
+            echo json_encode($tar->crear($_POST));
+            break;
+        
+         case 'tarea_obtener':
+            $tar = new TareaController();
+            echo json_encode($tar->obtener($_GET));
+            break;
+            
+         case 'tarea_actualizar':
+            $tar = new TareaController();
+            echo json_encode($tar->actualizar($_POST));
+            break;
+            
+         case 'tarea_cambiar_estado':
+            $tar = new TareaController();
+            echo json_encode($tar->cambiarEstado($_POST));
+            break;
+
+         case 'tarea_eliminar':
+            $tar = new TareaController();
+            echo json_encode($tar->eliminar($_POST));
+            break;
+
+         case 'tarea_agregar_etiqueta':
+            $tar = new TareaController();
+            echo json_encode($tar->agregarEtiqueta($_POST));
+            break;
+            
+         case 'tarea_quitar_etiqueta':
+            $tar = new TareaController();
+            echo json_encode($tar->quitarEtiqueta($_POST));
+            break;
+            
+         case 'tarea_estadisticas':
+            $tar = new TareaController();
+            echo json_encode($tar->estadisticas());
+            break;   
+
     }
 } catch (Exception $e) {
     echo json_encode([
